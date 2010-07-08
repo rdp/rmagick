@@ -172,7 +172,11 @@ elsif RUBY_PLATFORM =~ /mingw/  # mingw
   abort "Unable to get ImageMagick version" unless $1
   $magick_version = $1
   $LOCAL_LIBS = '-lCORE_RL_magick_ -lX11'
-
+  # add CFLAGS in case they installed via the Windows one click ImageMagick installer, with development headers
+  dir = File.dirname(find_executable('convert'))
+  $CFLAGS     = ENV["CFLAGS"].to_s + " " + "-I\"#{dir}\\include\""
+  $LDFLAGS    = ENV["LDFLAGS"].to_s  + " " + "-L\"#{dir}\\lib\""
+  
 else  # mswin
 
   `convert -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)-\d+ /
