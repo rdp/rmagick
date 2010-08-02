@@ -1,6 +1,6 @@
 require 'date'
 Gem::Specification.new do |s|
-  s.name = %q{rmagick}
+  s.name = %q{rdp-rmagick}
   s.version = "0.0.0"
   s.date = Date.today.to_s
   s.summary = %q{Ruby binding to ImageMagick}
